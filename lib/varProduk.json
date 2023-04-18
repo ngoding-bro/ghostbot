@@ -1,0 +1,106 @@
+[{
+    "name" : "htm",
+    "value": ["Hitam","Black"]
+},{
+    "name" : "crm",
+    "value": ["Cream","Krim"]
+},{
+    "name" : "mca",
+    "value": ["Mocca","Moka","Mokka"]
+},{
+    "name" : "pth",
+    "value": ["Putih","White"]
+},{
+    "name" : "etp",
+    "value": ["Etaupe","Etoupe"]
+},{
+    "name" : "mve",
+    "value": ["Mauve"]
+},{
+    "name" : "cco",
+    "value": ["Choco","Cokelat","Coklat"]
+},{
+    "name" : "pnk",
+    "value": ["Pink"]
+},{
+    "name" : "mnt",
+    "value": ["Mint"]
+},{
+    "name" : "kng",
+    "value": ["Kuning", "Yellow"]
+},{
+    "name" : "org",
+    "value": ["Orange"]
+},{
+    "name" : "ugu",
+    "value": ["Ungu", "Purple"]
+},{
+    "name" : "fta",
+    "value": ["Fanta"]
+},{
+    "name" : "bru",
+    "value": ["Biru","Blue"]
+},{
+    "name" : "gry",
+    "value": ["Grey","Abu","Abu-Abu","Abu abu"]
+},{
+    "name" : "pch",
+    "value": ["Peach"]
+},{
+    "name" : "lvd",
+    "value": ["Lavender"]
+},{
+    "name": "nvy",
+    "value": ["Navy"]
+},{
+    "name": "bhtm",
+    "value": ["Blush Black"]
+},{
+    "name": "lcrm",
+    "value": ["Leaf Cream"]
+},{
+    "name": "fcrm",
+    "value": ["Flower Cream"]
+},{
+    "name": "brw",
+    "value": ["Brown"]
+},{
+    "name": "olv",
+    "value": ["Olive", "Zaitun"]
+},{
+    "name": "dgry",
+    "value": ["Dark Grey"]
+},{
+    "name": "ibru",
+    "value": ["Ice Blue"]
+},{
+    "name": "slm",
+    "value": ["Salem"]
+},{
+    "name": "mrn",
+    "value": ["Maroon"]
+},{
+    "name": "fca",
+    "value": ["Fuchia"]
+},{
+    "name": "avd",
+    "value": ["Avocado", "Alpukat"]
+},{
+    "name": "cathtm",
+    "value": ["Cat Black"]
+},{
+    "name": "catpnk",
+    "value": ["Cat Pink"]
+},{
+    "name": "catbru",
+    "value": ["Cat Blue"]
+},{
+    "name": "catkng",
+    "value": ["Cat Yellow"]
+},{
+    "name": "gva",
+    "value": ["Guava"]
+},{
+    "name": "cml",
+    "value": ["Camel"]
+}]
