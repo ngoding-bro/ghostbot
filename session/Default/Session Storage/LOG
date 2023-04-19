@@ -1,0 +1,17 @@
+2023/04/18-09:46:08.083 bf4 Reusing MANIFEST C:\Users\dwiin\ghostbot\session\Default\Session Storage/MANIFEST-000001
+2023/04/18-09:46:08.089 bf4 Recovering log #90
+2023/04/18-09:46:08.100 bf4 Reusing old log C:\Users\dwiin\ghostbot\session\Default\Session Storage/000090.log 
+2023/04/18-10:10:10.879 bf4 Level-0 table #94: started
+2023/04/18-10:10:10.935 bf4 Level-0 table #94: 19051 bytes OK
+2023/04/18-10:10:10.983 bf4 Delete type=0 #90
+2023/04/18-10:10:10.984 bf4 Compacting 4@0 + 1@1 files
+2023/04/18-10:10:11.092 bf4 Generated table #95@0: 4722 keys, 64082 bytes
+2023/04/18-10:10:11.092 bf4 Compacted 4@0 + 1@1 files => 64082 bytes
+2023/04/18-10:10:11.125 bf4 compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/04/18-10:10:11.126 bf4 Delete type=2 #83
+2023/04/18-10:10:11.149 bf4 Delete type=2 #85
+2023/04/18-10:10:11.150 bf4 Delete type=2 #88
+2023/04/18-10:10:11.150 bf4 Delete type=2 #91
+2023/04/18-10:10:11.150 bf4 Delete type=2 #94
+2023/04/18-11:00:34.282 1b04 Level-0 table #97: started
+2023/04/18-11:00:34.546 1b04 Level-0 table #97: 19484 bytes IO error: C:\Users\dwiin\ghostbot\session\Default\Session Storage/000097.ldb: OS or hardware error. (ChromeMethodBFE: 8::NewRandomAccessFile::16)

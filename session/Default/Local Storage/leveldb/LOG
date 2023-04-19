@@ -1,0 +1,6 @@
+2023/04/18-09:46:08.087 1b04 Reusing MANIFEST C:\Users\dwiin\ghostbot\session\Default\Local Storage\leveldb/MANIFEST-000001
+2023/04/18-09:46:08.089 1b04 Recovering log #132
+2023/04/18-09:46:08.096 1b04 Reusing old log C:\Users\dwiin\ghostbot\session\Default\Local Storage\leveldb/000132.log 
+2023/04/18-10:39:19.157 1b04 Level-0 table #136: started
+2023/04/18-10:39:19.202 1b04 Level-0 table #136: 12143 bytes OK
+2023/04/18-10:39:19.223 1b04 Delete type=0 #132

@@ -1,0 +1,12 @@
+2023/04/18-10:58:04.238 271c Reusing MANIFEST C:\Users\dwiin\ghostbot\session\Default\IndexedDB\https_shopee.co.id_0.indexeddb.leveldb/MANIFEST-000001
+2023/04/18-10:58:04.240 271c Recovering log #5128
+2023/04/18-10:58:04.292 271c Reusing old log C:\Users\dwiin\ghostbot\session\Default\IndexedDB\https_shopee.co.id_0.indexeddb.leveldb/005128.log 
+2023/04/18-10:58:04.292 271c Delete type=2 #5126
+2023/04/18-10:58:05.037 30c4 Manual compaction at level-0 from ' \x8e\x06\x00\x00\x00' @ 72057594037927935 : 1 .. ' \x8f\x06\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/04/18-10:58:51.440 30c4 Manual compaction at level-0 from ' \x8f\x06\x00\x00\x00' @ 72057594037927935 : 1 .. ' \x90\x06\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/04/18-10:58:57.328 26b4 Compacting 1@1 + 1@2 files
+2023/04/18-10:58:57.497 26b4 Generated table #5132@1: 9855 keys, 225722 bytes
+2023/04/18-10:58:57.498 26b4 Compacted 1@1 + 1@2 files => 225722 bytes
+2023/04/18-10:58:57.542 26b4 compacted to: files[ 0 0 1 0 0 0 0 ]
+2023/04/18-10:58:57.545 26b4 Delete type=2 #4832
+2023/04/18-10:58:57.545 26b4 Delete type=2 #5130

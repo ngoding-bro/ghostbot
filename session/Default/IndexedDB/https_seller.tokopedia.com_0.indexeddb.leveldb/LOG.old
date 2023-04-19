@@ -1,0 +1,12 @@
+2023/04/18-09:41:27.980 468 Reusing MANIFEST C:\Users\dwiin\ghostbot\session\Default\IndexedDB\https_seller.tokopedia.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/04/18-09:41:27.981 468 Recovering log #43
+2023/04/18-09:41:28.868 468 Reusing old log C:\Users\dwiin\ghostbot\session\Default\IndexedDB\https_seller.tokopedia.com_0.indexeddb.leveldb/000043.log 
+2023/04/18-09:41:47.632 3018 Level-0 table #48: started
+2023/04/18-09:41:47.862 3018 Level-0 table #48: 771206 bytes OK
+2023/04/18-09:41:47.980 3018 Delete type=0 #43
+2023/04/18-09:41:48.422 468 Compacting 1@1 + 1@2 files
+2023/04/18-09:41:48.619 468 Generated table #49@1: 589 keys, 76746 bytes
+2023/04/18-09:41:48.619 468 Compacted 1@1 + 1@2 files => 76746 bytes
+2023/04/18-09:41:49.111 468 compacted to: files[ 0 0 1 0 0 0 0 ]
+2023/04/18-09:41:49.112 468 Delete type=2 #45
+2023/04/18-09:41:49.112 468 Delete type=2 #48

@@ -1,0 +1,23 @@
+{
+  "name": "ghostbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dwi Indra Putranto",
+  "license": "ISC",
+  "dependencies": {
+    "@open-wa/wa-automate": "^4.55.2",
+    "fs-extra": "^11.1.0",
+    "node-cron": "^3.0.2",
+    "onoff": "^6.0.3",
+    "puppeteer": "^19.6.2",
+    "puppeteer-extra-plugin-stealth": "^2.11.1",
+    "request": "^2.88.2",
+    "rpi-gpio": "^2.1.7",
+    "table": "^6.8.1"
+  }
+}
