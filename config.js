@@ -32,12 +32,21 @@ const start = async(client = new Client()) => {
    client.forceRefocus()
   }
  })
-   client.sendText(getData.ownerNumber,'*[READY PERGANTIAN STOCK]*\n\nPergantian stock telah dimulai, jika semua sudah benar dan lancar maka akan saya informasikan lagi!')
-   client.sendText(getData.ownerNumber, dataEnd.changeStock(buzzer))
-    client.onMessage(async(message)=>{
+ cron.schedule("0 */12 * * *", async()=>{
+  const getDataSchedule = JSON.parse(fs.readFileSync('./lib/config.json'))
+  if(getDataSchedule.aktifitas){
+    await client.sendText(getDataSchedule.ownerNumber,'Maaf sepertinya jadwal kamu tertunda karena akses penuh, pergantian stock dilewati')
+  }else{
+    fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getDataSchedule.mute,prefix:getDataSchedule.mute,banned:getDataSchedule.banned,aktifitas:true}))
+    await client.sendText(getDataSchedule.ownerNumber,'*[READY PERGANTIAN STOCK]*\n\nPergantian stock telah dimulai, jika semua sudah benar dan lancar maka akan saya informasikan lagi!')
+    await client.sendText(getDataSchedule.ownerNumber, dataEnd.changeStock(buzzer, client))
+    fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getDataSchedule.mute,prefix:getDataSchedule.mute,banned:getDataSchedule.banned,aktifitas:false}))
+  }
+ })
+ client.onMessage(async(message)=>{
    const getConfig = JSON.parse(fs.readFileSync('./lib/config.json'))
    const command = message.body.toLowerCase().split(' ')[0]||''
-   const { id, from, body } = message
+   const { id, from, body, pushname, shortName } = message
    const args = message.body.split(' ')
    dataEnd.tanggapanSesi(id, body, client)
    switch(command){
@@ -129,7 +138,7 @@ const start = async(client = new Client()) => {
          }
         }
         if(boolPref==true){
-         fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getConfig.mute,prefix:args[2]}))
+         fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getConfig.mute,prefix:args[2],banned:getConfig.banned,aktifitas:getConfig.aktifitas}))
          await client.reply(from, `*[PERGANTIAN PREFIX]*/n/nPrefix telah diganti ke "${args[2]}" mohon untuk menggunakan perintah diutamakan dengan prefix!`,id)
         }else{
          await client.reply(from, 'Mohon maaf!, Prefix tidak sesuai\nPrefix yang valid adalah '+prefixChange,id)
@@ -139,6 +148,35 @@ const start = async(client = new Client()) => {
        await client.reply(from, 'Maaf, berikan "change" utuk mengganti', id)
       }
       break
+    case getConfig.prefix+"gantistock":
+      if(from!==getData.ownerNumber) return client.reply(from, teksOwner(), id)
+      if(getData.aktifitas){
+        await client.sendText(getData.ownerNumber,'Maaf sepertinya perintah kamu tertunda karena akses penuh, pergantian stock dilewati')
+      }else{
+        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getData.mute,prefix:getData.mute,banned:getData.banned,aktifitas:true}))
+        await client.sendText(getData.ownerNumber,'*[READY PERGANTIAN STOCK]*\n\nPergantian stock telah dimulai, jika semua sudah benar dan lancar maka akan saya informasikan lagi!')
+        await client.sendText(getData.ownerNumber, dataEnd.changeStock(buzzer, client))
+        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getData.mute,prefix:getData.mute,banned:getData.banned,aktifitas:false}))
+      }
+    break
+    case getConfig.prefix+"menu":
+    case getConfig.prefix+"list":
+    case getConfig.prefix+"start":
+      if(from!==getData.ownerNumber) return client.reply(from, teksOwner(), id)
+      const date = new Date()
+      const getJam = date.getHours()
+      var greetingExpresion
+      if(getJam>=4&&getJam<=11){
+        greetingExpresion="Selamat Pagi"
+      }else if(getJam>=12&&getJam<=13){
+        greetingExpresion="Selamat Siang"
+      }else if(getJam>=14&&getJam<=18){
+        greetingExpresion="Selamat Sore"
+      }else if((getJam>=19&&getJam<=23)||(getJam>=0&&getJam<=3)){
+        greetingExpresion="Selamat Malam"
+      }
+      await client.reply(from, getData.teksList(greetingExpresion, pushname, getData.config), id)
+    break
     case getConfig.prefix+'banlink':
     case getConfig.prefix+'bannedlink':
     case getConfig.prefix+'linkbanned':
@@ -165,7 +203,7 @@ const start = async(client = new Client()) => {
               dataBanned.push(dataBlockSup.banned[g])
             }
             dataBanned.push(getIdSku)
-            const configAwal = {mute:dataBlockSup.mute,prefix:dataBlockSup.prefix,banned:dataBanned}
+            const configAwal = {mute:dataBlockSup.mute,prefix:dataBlockSup.prefix,banned:dataBanned,aktifitas:dataBlockSup.aktifitas}
             fs.writeFileSync('./lib/config.json',JSON.stringify(configAwal))
             await client.reply(from, 'Produk telah diban!', id)
           }
@@ -182,14 +220,14 @@ const start = async(client = new Client()) => {
       if(from!==getData.ownerNumber) return client.reply(from, teksOwner(), id)
       if(args[1].toLowerCase()=="on"||args[1].toLowerCase()=="hidup"||args[1].toLowerCase()=="hidupkan"||args[1].toLowerCase()=="aktif"||args[1].toLowerCase()=="aktifkan"){
        if(getConfig.mute==false){
-        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:true,prefix:getConfig.prefix}))
+        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:true,prefix:getConfig.prefix,banned:getConfig.banned,aktifitas:getConfig.aktifitas}))
         await client.reply(from, '*[INFORMASI EDIT DATA]*\n\nMode Senyap telah diaktifkan!\nMode senyap!', id)
        }else if(getConfig.mute==true){
         await client.reply(from, 'Pc kamu sudah bermode senyap, jadi kamu tidak perlu mengaktifkan mode senyap lagi!', id)
        }
       }else if(args[1].toLowerCase()=="off"||args[1].toLowerCase()=="mati"||args[1].toLowerCase()=="matikan"||args[1].toLowerCase()=="nonaktif"||args[1].toLowerCase()=="nonaktifkan"){
        if(getConfig.mute==true){
-        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:false,prefix:getConfig.prefix}))
+        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:false,prefix:getConfig.prefix,banned:getConfig.banned,aktifitas:getConfig.aktifitas}))
         await client.reply(from, '*[INFORMASI EDIT DATA]*\n\nMode Senyap telah dinonaktifkan!\nBeep bersuara!.',id)
        }else if(getConfig.mute==false){
         await client.reply(from, 'Buzzer kamu sudah menyala, kamu tidak perlu menyalakannya lagi!', id)
@@ -216,7 +254,7 @@ const start = async(client = new Client()) => {
        break
        default:
         if(from!==getData.ownerNumber) return client.reply(from, teksOwner(), id)
-        await client.reply(from, `Maaf, Perintah salah! kirim pesan *${prefix}menu* untuk mengetahui semua fitur`, id)
+        await client.reply(from, `Maaf, Perintah salah! kirim pesan *${getData.prefix}menu* untuk mengetahui semua fitur`, id)
      }
    })
 }
