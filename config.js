@@ -37,10 +37,10 @@ const start = async(client = new Client()) => {
   if(getDataSchedule.aktifitas){
     await client.sendText(getDataSchedule.ownerNumber,'Maaf sepertinya jadwal kamu tertunda karena akses penuh, pergantian stock dilewati')
   }else{
-    fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getDataSchedule.mute,prefix:getDataSchedule.mute,banned:getDataSchedule.banned,aktifitas:true}))
+    fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getDataSchedule.mute,prefix:getDataSchedule.prefix,banned:getDataSchedule.banned,aktifitas:true}))
     await client.sendText(getDataSchedule.ownerNumber,'*[READY PERGANTIAN STOCK]*\n\nPergantian stock telah dimulai, jika semua sudah benar dan lancar maka akan saya informasikan lagi!')
-    await client.sendText(getDataSchedule.ownerNumber, dataEnd.changeStock(buzzer, client))
-    fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getDataSchedule.mute,prefix:getDataSchedule.mute,banned:getDataSchedule.banned,aktifitas:false}))
+    await client.sendText(getDataSchedule.ownerNumber, await dataEnd.changeStock(buzzer, client))
+    fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getDataSchedule.mute,prefix:getDataSchedule.prefix,banned:getDataSchedule.banned,aktifitas:false}))
   }
  })
  client.onMessage(async(message)=>{
@@ -137,8 +137,9 @@ const start = async(client = new Client()) => {
           boolPref=true
          }
         }
+        const getConfigStock = JSON.parse(fs.readFileSync('./lib/config.json')) 
         if(boolPref==true){
-         fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getConfig.mute,prefix:args[2],banned:getConfig.banned,aktifitas:getConfig.aktifitas}))
+         fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getConfigStock.mute,prefix:args[2],banned:getConfigStock.banned,aktifitas:getConfigStock.aktifitas}))
          await client.reply(from, `*[PERGANTIAN PREFIX]*/n/nPrefix telah diganti ke "${args[2]}" mohon untuk menggunakan perintah diutamakan dengan prefix!`,id)
         }else{
          await client.reply(from, 'Mohon maaf!, Prefix tidak sesuai\nPrefix yang valid adalah '+prefixChange,id)
@@ -150,13 +151,13 @@ const start = async(client = new Client()) => {
       break
     case getConfig.prefix+"gantistock":
       if(from!==getData.ownerNumber) return client.reply(from, teksOwner(), id)
-      if(getData.aktifitas){
+      if(getConfig.aktifitas){
         await client.sendText(getData.ownerNumber,'Maaf sepertinya perintah kamu tertunda karena akses penuh, pergantian stock dilewati')
       }else{
-        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getData.mute,prefix:getData.mute,banned:getData.banned,aktifitas:true}))
+        await fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getConfig.mute,prefix:getConfig.prefix,banned:getConfig.banned,aktifitas:true}))
         await client.sendText(getData.ownerNumber,'*[READY PERGANTIAN STOCK]*\n\nPergantian stock telah dimulai, jika semua sudah benar dan lancar maka akan saya informasikan lagi!')
-        await client.sendText(getData.ownerNumber, dataEnd.changeStock(buzzer, client))
-        fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getData.mute,prefix:getData.mute,banned:getData.banned,aktifitas:false}))
+        await client.sendText(getData.ownerNumber, await dataEnd.changeStock(buzzer, client))
+        await fs.writeFileSync('./lib/config.json',JSON.stringify({mute:getConfig.mute,prefix:getConfig.prefix,banned:getConfig.banned,aktifitas:false}))
       }
     break
     case getConfig.prefix+"menu":
@@ -255,6 +256,7 @@ const start = async(client = new Client()) => {
        default:
         if(from!==getData.ownerNumber) return client.reply(from, teksOwner(), id)
         await client.reply(from, `Maaf, Perintah salah! kirim pesan *${getData.prefix}menu* untuk mengetahui semua fitur`, id)
+      break
      }
    })
 }
